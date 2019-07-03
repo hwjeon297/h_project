@@ -1,0 +1,12 @@
+<div class="header">
+<h1>header</h1>
+<div>
+<?php
+    if(@$this->session->userdata('logged_in')==true) {
+?>
+
+<h2><?php echo $this->session->userdata('username') ?> welcome</h2>
+
+<? } ?>
+</div>
+</div>
