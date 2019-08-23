@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-	<link rel="stylesheet" href="../../css/homepage.css">
+	<link rel="stylesheet" href="../css/homepage.css">
 	<link rel="stylesheet" href="../../css/signup.css">
     <link rel="stylesheet" href="../../css/cart.css">
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>

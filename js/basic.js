@@ -18,7 +18,7 @@
         }
 
         function ggcart() {
-            location.href = "/Cart/index";
+            location.href = "/gocart";
         }
 
         function signin(){

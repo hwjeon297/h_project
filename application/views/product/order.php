@@ -64,6 +64,7 @@
 
 <form action="payment" method="post">
 <input type=hidden name="ITEMS" value="<?=$_GET["ITEMS"]?>">
+
 <div id="tabs-1">
 <?
     $no = 0;
@@ -80,6 +81,7 @@
 
 ?>
    <div class="shopping-cart-reform">
+     <input type="hidden" name="product_name" value="<?=$item_row->product_name?>">
       <div class="item">
         <input type="hidden" id="">
         <input type="hidden" value="">

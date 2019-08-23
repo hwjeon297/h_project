@@ -42,6 +42,8 @@ $route['default_controller'] = "Home";
 $route['404_override'] = '';
 
 
+$route['gocart'] = "/Cart/index";
+
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
