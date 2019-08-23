@@ -8,11 +8,11 @@ class Order extends CI_Controller {
 		parent::__construct();
         $this->load->database();
         $this->load->library('cart');
-
 	}
 
     public function index()
 	{
+    
 		$this->load->view('product/order');
 	}
 
@@ -43,6 +43,7 @@ class Order extends CI_Controller {
     public function payment(){
 
         $ITEMS = $_POST["ITEMS"];
+        $pname = $_POST["pname"];
         $ordername = $_POST["ordername"];
         $orderphone = $_POST["orderphone"];
         $orderemail = $_POST["orderemail"];
@@ -55,6 +56,7 @@ class Order extends CI_Controller {
 
         $data = array(
             'ITEMS' => $ITEMS,
+            'pname' => $pname,
             'ordername' => $ordername,
             'orderemail' => $orderemail,
             'orderphone' => $orderphone,
@@ -67,11 +69,16 @@ class Order extends CI_Controller {
 
 
         $this->load->model('Home_model');
+
         $itemrow = $this->Home_model->insertorder($data);
 
         $this->order_delete();
 
-        $this->load->view('public/orderdone');
+        $aaa = array('kkk' => $itemrow);
+
+        $this->load->view('public/orderdone', $aaa);
+
+
     }
 
     public function rightorder_check(){
@@ -104,6 +111,7 @@ class Order extends CI_Controller {
         $ordermessage = $_POST["ordermessage"];
         $payck = $_POST["payck"];
 
+
         $data = array(
             'pc' => $productid,
             'pn' => $productpn,
@@ -123,7 +131,9 @@ class Order extends CI_Controller {
         $this->load->model('Home_model');
         $itemrow = $this->Home_model->insertoneorder($data);
 
-        $this->load->view('public/orderdone');
+        $aaa = array('kkk' => $itemrow);
+
+        $this->load->view('public/orderdone', $aaa);
     }
 
     public function order_delete(){

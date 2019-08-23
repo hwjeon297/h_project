@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="../../css/homepage.css">
 	<link rel="stylesheet" href="../../css/signup.css">
+	<link rel="stylesheet" href="../../css/cart.css">
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
     <script type="text/javascript" src="http://dinbror.dk/bpopup/assets/jquery.bpopup-0.9.4.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
@@ -14,12 +15,50 @@
 
 <? include_once  APPPATH ."views/public/header.html"; ?>
 
-<? include_once  APPPATH ."views/public/topnav.html"; ?>
+<div class="topnav" id="ttopnav">
+	<a href="/project/Home"></a>
+</div>
+
 <div class="row">
 
 <? include_once  APPPATH ."views/public/side.html"; ?>
 
+<div class="column middle">
+<div class="title">
+	注文完了
+</div>
+<div class="shopping-cart-total">
+  <div class="item">
+    <div class="total-price" style="padding:10px; width:48%;">商品</div>
+    <div class="total-price" style="padding:10px; width:25%;">数量</div>
+    <div class="total-price" style="padding:10px; width:25%;">価格</div>
+  </div>
+</div>
+<?php $total = 0; ?>
+<? foreach($kkk as $value) {?>
+	<div class="shopping-cart">
+		<div class="item">
+			<div class="description" style="width:80px; margin-left:190px">
+				<span><?=$value['orderpname']?></span>
+			</div>
+			<div class="description qty" style="margin-left:200px">
+				<span><?=$value['orderproduct_qty']?></span>
+			</div>
+			<div class="description price" style="margin-left:200px">
+				<span><?=$value['orderproduct_price']?></span>
+			</div>
+		</div><!--item-->
+	</div>
+	<? $total += $value['orderproduct_qty']*$value['orderproduct_price'] ?>
+<? } ?>
 
+<div class="shopping-cart-total">
+  <div class="item">
+    <div class="total-price" style="padding:10px; width:100%; text-align:right">商品合計：<?=$total?>円</div>
+  </div>
+</div>
+
+</div><!--middle-->
 
 </div>
 

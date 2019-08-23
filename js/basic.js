@@ -13,12 +13,12 @@
 
         function product_click(pcode){
          var num = pcode;
-         location.href = "/Home/product?pcode="+num;
+         location.href = "/project/Home/product?pcode="+num;
 
         }
 
         function ggcart() {
-            location.href = "/Cart/index";
+            location.href = "/project/Cart/index";
         }
 
         function signin(){
@@ -36,7 +36,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: "/Home/signup",
+                url: "/project/Home/signup",
                 data: {id: id, pw: pw, name: name, email: email, post: post, address: address, phone: phone, todoadd: a},
                 //dataType: 'json',
                 success: function(){
@@ -44,6 +44,7 @@
                     location.reload();
                 },
                 error: function(request,status,error){
+                    alert("会員登録X");
                     location.reload();
                     //console.log(error);
 
@@ -58,7 +59,7 @@
             //alert(mid);
             $.ajax({
                 type: 'POST',
-                url: "/Login/gologin",
+                url: "/project/Login/gologin",
                 data: {mid: mid, mpw: mpw},
                 // dataType: 'json',
                 success: function(res){
@@ -75,7 +76,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: "/Login/logout",
+                url: "/project/Login/logout",
                 success: function(){
                     alert("logoutok");
                     location.reload();
@@ -89,4 +90,3 @@
         function mypage(){
             location.href="/Login/mypageview";
         }
-

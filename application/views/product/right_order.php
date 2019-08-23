@@ -15,12 +15,43 @@
         $( "#tabs" ).tabs();
        } );
     </script>
+    <style>
+    .button1 {
+      background-color: #f1f1f1; /* Green */
+      border: none;
+      color: white;
+      padding: 16px 70px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      -webkit-transition-duration: 0.4s; /* Safari */
+      transition-duration: 0.4s;
+      cursor: pointer;
+      margin-left: 250px;
+    }
+
+    .button11 {
+      background-color: white;
+      color: black;
+      border: 2px solid #f1f1f1;
+    }
+
+    .button11:hover {
+      background-color: #f1f1f1;
+      color: black;
+    }
+    </style>
     <title>Order</title>
 </head>
 <body>
 <? include_once  APPPATH ."views/public/header.html"; ?>
 
-<? include_once  APPPATH ."views/public/topnav.html"; ?>
+<div class="topnav" id="ttopnav">
+	<a href="/project/Home">Home</a>
+</div>
+
 <div class="row">
 
 <? include_once  APPPATH ."views/public/side.html"; ?>
@@ -205,9 +236,10 @@
         <td class="payment">【振替口座】 00000-0-00000　カ）ヤマダコウギョウ</td>
     </tr>
     </table>
-
     </div>
-    <input type="submit" value="ok">
+    <input type="submit" value="ok" class="button1 button11">
+    </div>
+    </div>
     </div>
   </div><!--tab3-->
 </form>

@@ -12,6 +12,7 @@ class Cart extends CI_Controller {
 
 	public function index()
 	{
+    
 		$this->load->view('product/cart');
 	}
 
@@ -77,5 +78,11 @@ class Cart extends CI_Controller {
 
 
         $this->cart->update($data);
+
+    }
+
+    public function cartalldelete(){
+      $this->cart->destroy();
+      $this->load->view('product/cart');
     }
 }

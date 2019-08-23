@@ -9,6 +9,17 @@
   flex-direction: column;
 }
 
+.orderdone-cart {
+  width: 800px;
+  height: 113px;
+  margin: 8px auto;
+  background: #FFFFFF;
+  box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+}
+
 .shopping-cart-total {
   width: 800px;
   height: 80px;
@@ -102,6 +113,33 @@ Let’s add some basic style to  product name and description.
   width: 115px;
   padding: 30px;
   margin-top: 10px;
+}
+
+.description1 {
+  padding-top: 10px;
+  margin-right: 60px;
+  width: 115px;
+  padding: 30px;
+  margin-top: 10px;
+  margin-left: 186px;
+}
+
+.description2 {
+  padding-top: 10px;
+  margin-right: 60px;
+  width: 115px;
+  padding: 30px;
+  margin-top: 10px;
+  margin-left: 190px;
+}
+
+.description3 {
+  padding-top: 10px;
+  margin-right: 60px;
+  width: 115px;
+  padding: 30px;
+  margin-top: 10px;
+  margin-left: 200px;
 }
 
 .description span {

@@ -1,7 +1,7 @@
 
 <div class="column middle">
  <div class="main">
-     <img src="../../img/main.jpg" alt="" class="mainimg">
+     <img src="../img/main.jpg" alt="" class="mainimg">
      <div class="centered">Make your own tapioca</div>
  </div>
   <? foreach($kkk as $value) { ?>

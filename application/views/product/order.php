@@ -13,32 +13,35 @@
     <script>
        $( function() {
         $( "#tabs" ).tabs();
-       } );
+      } );
     </script>
     <style>
-.button {
-          width: 90%;
-          background-color: #dd9537; /* Green */
-          border: none;
-          color: white;
-          padding: 16px 120px;
-          text-align: center;
-          text-decoration: none;
-          display: inline-block;
-          font-size: 25px;
-          font-weight: bolder;
-          margin: 4px 2px;
-          transition-duration: 0.4s;
-          cursor: pointer;
-          margin-top: 10px;
-          border-radius: 12px;
-        }
-.button2 {
-          background-color: #dd9537; color: #fff; transition: all 0.2s;
-        }
-.button2:hover {
-          opacity: 0.5;
-        }
+    .button1 {
+      background-color: #f1f1f1; /* Green */
+      border: none;
+      color: white;
+      padding: 16px 70px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      -webkit-transition-duration: 0.4s; /* Safari */
+      transition-duration: 0.4s;
+      cursor: pointer;
+      margin-left: 250px;
+    }
+
+    .button11 {
+      background-color: white;
+      color: black;
+      border: 2px solid #f1f1f1;
+    }
+
+    .button11:hover {
+      background-color: #f1f1f1;
+      color: black;
+    }
     </style>
     <title>Order</title>
 </head>
@@ -48,7 +51,10 @@
 
 <? include_once  APPPATH ."views/public/header.html"; ?>
 
-<? include_once  APPPATH ."views/public/topnav.html"; ?>
+<div class="topnav" id="ttopnav">
+	<a href="/project/Home">Home</a>
+</div>
+
 <div class="row">
 
 <? include_once  APPPATH ."views/public/side.html"; ?>
@@ -80,6 +86,7 @@
 
 ?>
    <div class="shopping-cart-reform">
+     <input type="hidden" name="pname" value="<?=$item_row->product_name?>">
       <div class="item">
         <input type="hidden" id="">
         <input type="hidden" value="">
@@ -204,13 +211,7 @@
       </div>
 
 
-      <div class="check-boxes">
-        <ul>
-          <li>
-            <input type="checkbox" name="terms" /> <span>I accept terms and conditions</span>
-          </li>
-        </ul>
-      </div>
+
 
     </div>
 
@@ -244,7 +245,7 @@
     </table>
 
     </div>
-        <input type="submit" value="ok">
+        <input type="submit" value="ok" class="button1 button11">
     </div>
   </div><!--tab3-->
 </form>
