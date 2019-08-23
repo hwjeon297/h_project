@@ -44,13 +44,13 @@
 
            $.ajax({
                 type:'POST',
-                url: "/Cart/insert",
+                url: "/project/Cart/insert",
                 data:{ id: id, qty: qty, price: price, name: name, image:image },
                 dataType: 'json',
                 success: function(html){
                     console.log(html);
                     result = html;
-                    location.href = "/Cart/index";
+                    location.href = "/project/Cart/index";
                 },
                 error: function(request,status,error){
                     alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -62,7 +62,7 @@
             var id = $('#pcode').val();
             var qty = $('#pcount').val();
 
-            location.href = "/Order/rightorder_check?id="+id+"&qty="+qty;
+            location.href = "/project/Order/rightorder_check?id="+id+"&qty="+qty;
         }
 
 
@@ -78,7 +78,7 @@
 
            $.ajax({
                 type:'POST',
-                url: "/Cart/insert",
+                url: "/project/Cart/insert",
                 data:{ id: id, qty: qty, price: price, name: name, image:image },
                 dataType: 'json',
                 success: function(html){
@@ -101,6 +101,9 @@
     <title>gogo</title>
 </head>
 <body>
+
+<script src="../js/basic.js"></script>
+
 <? include "public/header.html" ?>
 
 <? include "public/topnav.html" ?>
@@ -127,19 +130,16 @@
   </div>
   <div class="grid-item item5">
     <div>
-      <h2>London</h2>
       <p><img src="<?=$value['product_m_image']?>"></p>
       <hr>
     </div>
 
     <article>
-      <h2>Paris</h2>
       <p><img src="<?=$value['product_m_image']?>"></p>
       <hr>
     </article>
 
     <section>
-      <h2>Tokyo</h2>
       <p><img src="<?=$value['product_m_image']?>"></p>
     </section>
   </div>

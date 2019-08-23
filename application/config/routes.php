@@ -41,6 +41,8 @@
 $route['default_controller'] = "Home";
 $route['404_override'] = '';
 
+$route['gocart'] = "/Cart/index";
+
 
 $route['gocart'] = "/Cart/index";
 

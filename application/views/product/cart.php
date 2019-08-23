@@ -5,6 +5,36 @@
 	<link rel="stylesheet" href="../css/homepage.css">
 	<link rel="stylesheet" href="../../css/signup.css">
     <link rel="stylesheet" href="../../css/cart.css">
+    <style>
+      .button {
+        background-color: #f1f1f1;
+        border: none;
+        color: white;
+        padding: 16px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        -webkit-transition-duration: 0.4s; /* Safari */
+        transition-duration: 0.4s;
+        cursor: pointer;
+      }
+      .button1 {
+        background-color: white;
+        color: black;
+        border: 2px solid #f1f1f1;
+      }
+
+      .button1:hover {
+        background-color: #f1f1f1;
+        color: black;
+      }
+      .description1{
+        text-align: right;
+        margin-right: 310px;
+      }
+    </style>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
     <script type="text/javascript" src="http://dinbror.dk/bpopup/assets/jquery.bpopup-0.9.4.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
@@ -47,7 +77,7 @@
 
             $.ajax({
                 type : 'POST',
-                url : "/Cart/cartupdate",
+                url : "/project/Cart/cartupdate",
                 data : { qty_all: qty_all, itemrowid_all: itemrowid_all, delimeter: delimeter },
                 dataType: 'json',
                 success: function(html){
@@ -62,7 +92,7 @@
         function deleteCart(rowid){
             $.ajax({
                type : 'POST',
-                url : "/Cart/cartdelete",
+                url : "/project/Cart/cartdelete",
                 data : { rowid: rowid},
                 dataType : 'json',
                 success: function(res){
@@ -79,30 +109,44 @@
             var delimeter_second = "IVV";
             var itemid_all = "";
 
+
+
             $(".cart_all").each(function(){
                if($("#"+this.id).val()){
                    if(itemid_all){
                        itemid_all += delimeter;
                    }
-                   itemid_all += $("#"+this.id).attr("item_no") + delimeter_second + $("#"+this.id).attr("item_qty") + delimeter_second + $("#"+this.id).attr("eachitemtotal")+ delimeter_second + $("#"+this.id).attr("item_total");
+                   itemid_all += $("#"+this.id).attr("item_no") + delimeter_second + $("#"+this.id).attr("item_qty") + delimeter_second + $("#"+this.id).attr("eachitemtotal")
+                   + delimeter_second + $("#"+this.id).attr("item_total")+ delimeter_second + $("#"+this.id).attr("pname");
                }
                 console.log($("#"+this.id).attr("eachitemtotal"));
             });
 
+            if(itemid_all.length == 0){
+              alert("cart none");
+              return;
+            }
+
+
+            
+
             //alert(itemid_all);
-            location.href = "/Order/order_check?ITEMS="+itemid_all;
+            location.href = "/project/Order/order_check?ITEMS="+itemid_all;
         }
 
         function delete_all(){
-            alert("aaa");
-            location.href = "/Order/order_delete";
+            location.href = "/project/Cart/cartalldelete";
+        }
+
+        function zero(){
+
         }
     </script>
     <title>Cart</title>
 </head>
 <body>
 
-<script src="../../js/basic.js"></script>
+<script src="../js/basic.js"></script>
 
 <? include_once  APPPATH ."views/public/header.html"; ?>
 
@@ -127,11 +171,12 @@
 <? foreach($this->cart->contents() as $items){ ?>
 <div class="shopping-cart">
   <div class="item">
-    <input type="hidden" id="<?='rowid'.$i?>" class="cart_all" value="<?=$items['rowid']?>" item_qty="<?=$items['qty']?>" item_no="<?=$items['id']?>" eachitemtotal="<?=$items['subtotal']?>" item_total="<?=$this->cart->total()?>">
+    <input type="hidden" id="<?='rowid'.$i?>" class="cart_all" value="<?=$items['rowid']?>" item_qty="<?=$items['qty']?>" item_no="<?=$items['id']?>" eachitemtotal="<?=$items['subtotal']?>"
+    item_total="<?=$this->cart->total()?>" pname="<?=$items['name']?>">
 
     <input type="hidden" value="<?=$i.'rowid'?>">
     <div class="buttons">
-      <img src="../../img/delete.png" id="delete<?=$i?>" class="delete-btn" onclick="javascript:deleteCart('<?=$items['rowid']?>')">
+      <img src="../img/delete.png" id="delete<?=$i?>" class="delete-btn" onclick="javascript:deleteCart('<?=$items['rowid']?>')">
     </div>
 
     <div class="image">
@@ -143,7 +188,8 @@
     </div>
 
     <p class="pcount" style="padding-left:50px; margin-top: 30px; margin-left: 60px;">
-    <input type="text" itemrowid="<?=$items['rowid']?>" id="<?='qty'.$i?>" name="<?='qty'.$i?>" size="3" maxlength="3" value="<?=$items['qty']?>" ><br></p>
+    <input class="qty10" type="text" itemrowid="<?=$items['rowid']?>" id="<?='qty'.$i?>" name="<?='qty'.$i?>" size="3" maxlength="3" value="<?=$items['qty']?>"><br>
+    </p>
 
     <div class="each-price"><?=$items['price']?>円</div>
     <div class="total-price"><?=$items['subtotal']?>円</div>
@@ -157,10 +203,10 @@
   </div>
 </div>
 
-<div class="description">
-    <span style="text-align: center" onclick="javascript:updateCart()">Update</span>
-    <span style="text-align: center" onclick="javascript:order_form()">Order</span>
-    <span style="text-align: center" onclick="javascript:delete_all()">Delete All</span>
+<div class="description1" style="text-align: right; margin-right::310px">
+    <button class="button button1" onclick="javascript:delete_all()">Delete all</button>
+    <button class="button button1" onclick="javascript:updateCart()">Update</button>
+    <button class="button button1" onclick="javascript:order_form()">Order</button>
 </div>
 
 </div> <!--div column middle-->

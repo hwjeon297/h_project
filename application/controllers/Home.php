@@ -1,19 +1,47 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+include "forTest.php";
+//include "sendMail.php";
+//include "checkDate.php";
+
 class Home extends CI_Controller {
+
+    public $pc;
+    public $date;
+    public $file;
+    public $dateFromCheckDate;
+    public $dateToMail;
 
     public function __construct()
 	{
-		parent::__construct();
+		    parent::__construct();
         $this->load->database();
+        $this->pc = new forTest();
+        $this->dateFromCheckDate = new checkDate();
+        $this->dateToMail = $this->dateFromCheckDate->getYesterDay();
+        //$this->file = new sendMail();
+        //$this->date = new checkDate();
 	}
 
 	public function index()
 	{
-		//$this->allproduct();
-        $this->load->model('Home_model');
-        $result = $this->Home_model->get_all_product();
-        $aaa = array('kkk' => $result);
+		    //$this->allproduct();
+        $res = $this->load->model('home_model');
+        $result = $this->home_model->get_all_product();
+        $countPV = $this->pc->countPV();
+        $countCVR = $this->pc->countCVR();
+        $testing = $this->pc->testing();
+        $aaa = array(
+                'kkk' => $result
+                );
+        if($countPV !== "no file"){
+            //print_r($countPV);
+        }
+        //print_r($countCVR);
+        //print_r($testing);
+        //$weekofday = $this->date->getYesterDay();
+        //print_r($weekofday);
+        //$this->file->makeFile();
         $this->load->view('home_view', $aaa);
 
 	}
@@ -39,8 +67,8 @@ class Home extends CI_Controller {
 
         } else {
 
-            $this->load->model('Home_model');
-            $result = $this->Home_model->add(array(
+            $this->load->model('home_model');
+            $result = $this->home_model->add(array(
                 'id'=>$this->input->post('id'),
                 'pw'=>$this->input->post('pw'),
                 'name'=>$this->input->post('name'),
@@ -61,38 +89,20 @@ class Home extends CI_Controller {
     }
 
     public function product() {
-
        $pnum = $_GET["pcode"];
-       $this->load->model('Home_model');
-       $result = $this->Home_model->get_one_product($pnum);
+       $this->load->model('home_model');
+       $result = $this->home_model->get_one_product($pnum);
        $one_product = array('op' => $result);
-
        $this->load->view('check', $one_product);
-      //print_r ($one_product);
-     //echo 1;
-
-
     }
 
-    public function check(){
-         $this->load->view('check');
-    }
 
     public function getpowder(){
         $cname = $_GET["cname"];
-
-        //print_r($cname);
-
-        $this->load->model('Home_model');
-
-        $result = $this->Home_model->get_one_category($cname);
-
+        $this->load->model('home_model');
+        $result = $this->home_model->get_one_category($cname);
         $show = array('kkk'=>$result);
-
         $this->load->view('product/showcategory', $show);
     }
 
-
-
 }
-

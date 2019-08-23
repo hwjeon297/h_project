@@ -16,8 +16,8 @@ class Login extends CI_Controller {
             'pw' => $this->input->post('mpw', true)
         );
 
-        $this->load->model('Home_model');
-        $res = $this->Home_model->logincheck($auth_data);
+        $this->load->model('home_model');
+        $res = $this->home_model->logincheck($auth_data);
 
         //echo json_encode($res);
 
