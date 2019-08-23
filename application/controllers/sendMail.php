@@ -1,8 +1,12 @@
 #!/usr/bin/php
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 include "forTest.php";
-
+include "/var/www/html/project/PHPMailer-master/src/PHPMailer.php";
+include "/var/www/html/project/PHPMailer-master/src/SMTP.php";
+include "/var/www/html/project/PHPMailer-master/src/Exception.php";
 class sendMail{
 
   public $dataFromForTest;
@@ -38,6 +42,7 @@ class sendMail{
   }
 
   public function sendingMail(){
+
     $pvuuArr = $this->dataFromForTest->countPV();
     $cvrToMail = $this->dataFromForTest->countCVR();
     $ranking = $this->dataFromForTest->rankingProduct();
@@ -48,16 +53,45 @@ class sendMail{
     $first = $ranking[0];
     $second = $ranking[1];
 
-    $mailTo = "hwjeon6669@gmail.com, hwjeon297@naver.com";
-    $title = "ヒョ茶のレポート";
     $content = "";
-    $content .= "お疲れ様です 。ジョンヒョウォンです 。ヒョ茶のレポートをお送りいたします。";
-    $content .= "日付: $this->dateToMail";
-    $content .= "pv: $this->pvToMail uu: $this->uuToMail";
-    $content .= "cvr: $cvr order: $order 回";
-    $content .= "$this->dateToMail よく売れている商品: 1.$first 2.$second";
+    $content .= "お疲れ様です 。ジョンヒョウォンです 。<br>ヒョ茶のレポートをお送りいたします。<br>";
+    $content .= "------------------------------------------------------------------------------<br>";
+    $content .= "日付: $this->dateToMail <br>";
+    $content .= "PV: $this->pvToMail UU: $this->uuToMail <br>";
+    $content .= "CVR: $cvr%  注文数: $order 件 <br>";
+    $content .= "$this->dateToMail によく売れている商品: 1.$first 2.$second <br>";
+    $content .= "------------------------------------------------------------------------------<br>";
     $content .= "ご確認の程よろしくお願い致します。";
-    mail($mailTo, $title, $content);
+
+    // $mailTo = "hwjeon6669@gmail.com, hwjeon297@naver.com";
+    // $title = "ヒョ茶のレポート";
+    //
+    // mail($mailTo, $title, $content);
+
+    $mail = new PHPMailer(true);
+    $mail->isSMTP();
+
+    $mail->Host = 'smtp.naver.com';
+    $mail->SMTPAuth = true;
+    $mail->Username = 'hwjeon297@naver.com';
+    $mail->Password = '9058504h?';
+    $mail->SMTPSecure = 'ssl';
+    $mail->Port = 465;
+    $mail->CharSet = 'utf-8';
+
+    $mail->setFrom('hwjeon297@naver.com');
+    $mail->addAddress('h-jeon@estore.co.jp');
+    $mail->addAddress('takai@estore.co.jp');
+    $mail->addAddress('y-ito@estore.co.jp');
+    $mail->addAddress('f-maeda@estore.co.jp');
+    $mail->addAddress('yagi@estore.co.jp');
+    $mail->addAddress('kumamimi@estore.co.jp');
+    $mail->addAddress('m-park@estore.co.jp');
+    $mail->addAddress('mi-kim@estore.co.jp');
+    $mail->isHTML(true);
+    $mail->Subject = "$this->dateToMail ヒョ茶のレポート";
+    $mail->Body = "$content";
+    $mail->Send();
   }
 }
 

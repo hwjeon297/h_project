@@ -87,11 +87,7 @@
 
 ?>
    <div class="shopping-cart-reform">
-<<<<<<< HEAD
-     <input type="hidden" name="product_name" value="<?=$item_row->product_name?>">
-=======
      <input type="hidden" name="pname" value="<?=$item_row->product_name?>">
->>>>>>> 0560fcb826a9722d8de523f8452dc7e3214573ce
       <div class="item">
         <input type="hidden" id="">
         <input type="hidden" value="">

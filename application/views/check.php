@@ -102,7 +102,7 @@
 </head>
 <body>
 
-<script src="../js/basic.js"></script>
+<script src="../../js/basic.js"></script>
 
 <? include "public/header.html" ?>
 

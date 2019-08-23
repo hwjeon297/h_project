@@ -14,15 +14,11 @@
         function product_click(pcode){
          var num = pcode;
          location.href = "/project/Home/product?pcode="+num;
-
         }
 
-        function ggcart() {
-<<<<<<< HEAD
+        function gocart() {
+            //location.href = "/project/Cart/index";
             location.href = "/gocart";
-=======
-            location.href = "/project/Cart/index";
->>>>>>> 0560fcb826a9722d8de523f8452dc7e3214573ce
         }
 
         function signin(){

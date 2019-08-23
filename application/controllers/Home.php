@@ -30,7 +30,7 @@ class Home extends CI_Controller {
         $result = $this->home_model->get_all_product();
         $countPV = $this->pc->countPV();
         $countCVR = $this->pc->countCVR();
-        $testing = $this->pc->testing();
+        //$testing = $this->pc->testing();
         $aaa = array(
                 'kkk' => $result
                 );
