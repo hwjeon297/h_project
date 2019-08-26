@@ -3,7 +3,7 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-include "forTest.php";
+include "getPVCVR.php";
 include "/var/www/html/project/PHPMailer-master/src/PHPMailer.php";
 include "/var/www/html/project/PHPMailer-master/src/SMTP.php";
 include "/var/www/html/project/PHPMailer-master/src/Exception.php";
@@ -85,13 +85,20 @@ class sendMail{
     $mail->Host = 'smtp.naver.com';
     $mail->SMTPAuth = true;
     $mail->Username = 'hwjeon297@naver.com';
-    $mail->Password = 'password';
+    $mail->Password = '9058504h?';
     $mail->SMTPSecure = 'ssl';
     $mail->Port = 465;
     $mail->CharSet = 'utf-8';
 
     $mail->setFrom('hwjeon297@naver.com');
     $mail->addAddress('h-jeon@estore.co.jp');
+    $mail->addAddress('takai@estore.co.jp');
+    $mail->addAddress('y-ito@estore.co.jp');
+    $mail->addAddress('f-maeda@estore.co.jp');
+    $mail->addAddress('yagi@estore.co.jp');
+    $mail->addAddress('kumamimi@estore.co.jp');
+    $mail->addAddress('m-park@estore.co.jp');
+    $mail->addAddress('mi-kim@estore.co.jp');
     $mail->isHTML(true);
     $mail->Subject = "$this->dateToMail ヒョ茶のレポート";
     $mail->Body = "$content";
