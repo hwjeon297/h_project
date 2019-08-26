@@ -28,9 +28,14 @@ class sendMail{
       return;
     }
     $pvuuArr = $this->dataFromForTest->countPV();
-    $this->cvrToMail = $this->dataFromForTest->countCVR();
+    $cvrToMail = $this->dataFromForTest->countCVR();
+    $ranking = $this->dataFromForTest->rankingProduct();
     $this->pvToMail = $pvuuArr['pv'];
     $this->uuToMail = $pvuuArr['uu'];
+    $cvr = $cvrToMail['cvr'];
+    $order = $cvrToMail['totalOrder'];
+    $first = $ranking[0];
+    $second = $ranking[1];
 
     $directory = "/var/www/html/report";
     if(!file_exists($directory)){
@@ -38,7 +43,13 @@ class sendMail{
       mkdir($directory, 0777);
     }
 
-    file_put_contents($directory."/reportfile".$this->dateToMail, $this->pvToMail);
+    $content = "";
+    $content .= "日付: $this->dateToMail";
+    $content .= "PV: $this->pvToMail UU: $this->uuToMail";
+    $content .= "CVR: $cvr%  注文数: $order 件";
+    $content .= "$this->dateToMail によく売れている商品: 1.$first 2.$second ";
+
+    file_put_contents($directory."/reportfile".$this->dateToMail, $content);
   }
 
   public function sendingMail(){
